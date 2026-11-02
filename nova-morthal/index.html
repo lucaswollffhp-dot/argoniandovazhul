@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Édito de Fundação da Nova Morthal</title>
+<meta name="description" content="Proclamação da assembleia de Morthal: a fundação da Nova Morthal e a nova administração de Hjaalmarch.">
+<meta name="theme-color" content="#0e1418">
+<link rel="icon" type="image/png" href="/img/favicon.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+
+<!-- Pré-visualização ao compartilhar o link (Discord, WhatsApp etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Édito de Fundação da Nova Morthal">
+<meta property="og:description" content="Proclamação da assembleia de Morthal: a fundação da Nova Morthal e a nova administração de Hjaalmarch.">
+<meta property="og:image" content="https://argoniandovazhul.vercel.app/img/capa.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap">
+<style>
+:root{
+  /* Layout: uma travessia por Morthal — o édito lido em trechos, cada um ancorado numa vista da cidade, do salão da assembleia ao portão aberto. Visual único e deliberado: noite de neve sobre o pântano. */
+  --ground:#0e1418;
+  --raised:#141c21;
+  --mist:#dde3e2;
+  --mist-dim:#a3aeaf;
+  --torch:#d8a35c;
+  --moss:#97a672;
+  --moss-wash:rgba(151,166,114,.25);
+  --wood:#5e4d39;
+  --wood-dark:#2f261c;
+  --line:rgba(221,227,226,.16);
+  --veil:rgba(14,20,24,.88);
+  --veil-soft:rgba(14,20,24,.35);
+
+  --font-display:"IM Fell English SC","IM Fell English",Georgia,"Times New Roman",serif;
+  --font-body:"IM Fell English",Georgia,"Times New Roman",serif;
+  --font-ui:"Barlow Condensed","Arial Narrow","Roboto Condensed",sans-serif;
+
+  --fs-ui:.8125rem;
+  --fs-small:1.0625rem;
+  --fs-body:1.1875rem;
+  --fs-lead:clamp(1.3rem,2.4vw,1.55rem);
+  --fs-h2:clamp(1.9rem,4.4vw,2.9rem);
+  --fs-h1:clamp(2.6rem,7.6vw,5.6rem);
+
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--mist);
+  font-family:var(--font-body);
+  font-size:var(--fs-body);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{display:block;max-width:100%}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--torch);outline-offset:3px}
+
+.wrap{
+  width:100%;
+  max-width:74rem;
+  margin-inline:auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+
+/* ——— Elementos de interface no espírito do menu de Skyrim ——— */
+.label{
+  font-family:var(--font-ui);
+  font-weight:600;
+  font-size:var(--fs-ui);
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--torch);
+}
+.kicker{
+  display:flex;
+  align-items:center;
+  gap:.85rem;
+  margin:0;
+  font-family:var(--font-ui);
+  font-weight:600;
+  font-size:var(--fs-ui);
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--torch);
+}
+.kicker::before{
+  content:"";
+  width:.5rem;height:.5rem;
+  flex:none;
+  border:1px solid currentColor;
+  transform:rotate(45deg);
+}
+.kicker::after{
+  content:"";
+  height:1px;
+  flex:1;
+  max-width:9rem;
+  background:linear-gradient(90deg,var(--torch),transparent);
+  opacity:.6;
+}
+.rule{position:relative;height:9px;width:min(100%,22rem)}
+.rule::before{
+  content:"";
+  position:absolute;left:0;right:0;top:4px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--mist-dim) 28%,var(--mist-dim) 72%,transparent);
+  opacity:.7;
+}
+.rule::after{
+  content:"";
+  position:absolute;left:50%;top:0;
+  width:9px;height:9px;
+  transform:translateX(-50%) rotate(45deg);
+  border:1px solid var(--torch);
+  background:var(--ground);
+}
+
+/* ——— Abertura ——— */
+.hero{position:relative;isolation:isolate;overflow:hidden;background:var(--ground)}
+.hero__img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;object-position:center 42%;
+  z-index:-3;
+}
+.fog{
+  position:absolute;inset:-10% -40%;
+  z-index:-2;
+  background:
+    radial-gradient(38% 26% at 28% 62%,rgba(221,227,226,.11),transparent 70%),
+    radial-gradient(30% 22% at 72% 48%,rgba(221,227,226,.08),transparent 70%),
+    radial-gradient(45% 30% at 50% 85%,rgba(221,227,226,.07),transparent 70%);
+  animation:drift 48s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+@keyframes drift{from{transform:translateX(-5%)}to{transform:translateX(5%)}}
+.hero::after{
+  content:"";
+  position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(14,20,24,.6) 0%,rgba(14,20,24,.1) 30%,rgba(14,20,24,.62) 68%,var(--ground) 100%);
+}
+.hero__inner{
+  display:flex;flex-direction:column;
+  gap:clamp(5.5rem,20vw,14rem);
+  padding-block:1.1rem clamp(3rem,7vw,5rem);
+}
+.nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem 1.5rem}
+.nav__mark{display:inline-flex;align-items:center;gap:.65rem;font-family:var(--font-display);font-size:1.15rem;letter-spacing:.04em;color:var(--mist)}
+.nav__mark img{width:2rem;height:2rem;flex:none}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.25rem 1.4rem}
+.nav a{
+  font-family:var(--font-ui);font-weight:500;font-size:var(--fs-ui);
+  letter-spacing:.2em;text-transform:uppercase;text-decoration:none;
+  color:var(--mist);
+  padding-block:.3rem;
+  border-bottom:1px solid transparent;
+  transition:border-color .2s,color .2s;
+}
+.nav a:hover{color:var(--torch);border-bottom-color:var(--torch)}
+.hero__text{display:grid;gap:1.15rem;max-width:46rem}
+.hero h1{
+  margin:0;
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:var(--fs-h1);
+  line-height:1.02;
+  letter-spacing:.005em;
+  max-width:15ch;
+  text-wrap:balance;
+  text-shadow:0 2px 28px rgba(0,0,0,.55);
+}
+.hero__sub{font-style:italic;font-size:var(--fs-lead);line-height:1.4;color:var(--mist);text-wrap:balance}
+.hero__call{max-width:40rem;color:var(--mist-dim);font-size:var(--fs-small);line-height:1.65}
+
+/* ——— Saudação ——— */
+.intro{padding-block:clamp(3.5rem,8vw,6.5rem)}
+.intro__grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.55fr);
+  gap:clamp(2rem,5vw,5rem);
+  align-items:start;
+}
+.address{display:grid;gap:1.25rem}
+.address p{font-style:italic;font-size:var(--fs-lead);line-height:1.45;text-wrap:balance}
+.prose{display:grid;gap:1.1em}
+.prose p{max-width:62ch}
+.dropcap::first-letter{
+  font-family:var(--font-display);
+  float:left;
+  font-size:4.3em;
+  line-height:.82;
+  padding:.06em .14em 0 0;
+  color:var(--torch);
+}
+
+/* ——— Pranchas de imagem ——— */
+.plate{margin:0;display:grid;gap:.65rem}
+.plate img{width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--line)}
+.plate--wide img{aspect-ratio:21/9}
+.plate figcaption{
+  font-family:var(--font-ui);font-weight:500;font-size:var(--fs-ui);
+  letter-spacing:.2em;text-transform:uppercase;color:var(--mist-dim);
+}
+
+/* ——— Assembleia ——— */
+.assembly{background:var(--raised);border-block:1px solid var(--line)}
+.assembly__grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+  gap:clamp(2rem,5vw,4.5rem);
+  align-items:center;
+  padding-block:clamp(3rem,7vw,5.5rem);
+}
+.assembly__text{display:grid;gap:1.1em;min-width:0}
+.assembly__text p{max-width:58ch}
+.plate--council img{aspect-ratio:3/2}
+.assembly__birth{display:grid;gap:clamp(1.5rem,3.5vw,2.25rem);padding-block:0 clamp(3rem,7vw,5.5rem)}
+.plate--dawn img{aspect-ratio:2/1;object-position:center 72%}
+.birth{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:clamp(1rem,4vw,3.5rem);
+  align-items:end;
+}
+.birth p:last-child{max-width:52ch}
+.decree{
+  font-family:var(--font-display);
+  font-size:var(--fs-h2);
+  line-height:1.12;
+  color:var(--torch);
+  text-wrap:balance;
+  padding-block:.3em;
+}
+
+/* ——— Faixas com imagem ——— */
+.banner{position:relative;isolation:isolate;overflow:hidden}
+.banner__img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  z-index:-2;
+}
+.banner::after{
+  content:"";
+  position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(90deg,var(--veil) 0%,rgba(14,20,24,.55) 45%,var(--veil-soft) 100%),
+             linear-gradient(180deg,transparent 55%,var(--ground) 100%);
+}
+.banner__text{
+  display:grid;gap:1.1rem;
+  padding-block:clamp(7rem,20vw,15rem) clamp(2.5rem,5vw,3.5rem);
+}
+.statement{
+  font-family:var(--font-display);
+  font-size:clamp(2rem,4.8vw,3.25rem);
+  line-height:1.1;
+  max-width:20ch;
+  text-wrap:balance;
+  text-shadow:0 2px 20px rgba(0,0,0,.5);
+}
+
+/* ——— Portões ——— */
+.gates .banner__img{object-position:58% 35%}
+.gates__body{display:grid;gap:clamp(2rem,4vw,3rem);padding-block:clamp(2.5rem,5vw,3.5rem) clamp(3.5rem,8vw,6rem)}
+.lead{font-size:var(--fs-lead);line-height:1.5;max-width:52ch}
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1.5rem,4vw,3.5rem)}
+.pair p{border-top:1px solid var(--line);padding-top:1.1rem;max-width:52ch}
+.opening{font-family:var(--font-display);color:var(--torch)}
+
+/* ——— Governo ——— */
+.government .banner__img{object-position:70% 40%}
+.jarl-name{
+  font-family:var(--font-display);
+  font-size:var(--fs-h1);
+  line-height:1;
+  text-shadow:0 2px 24px rgba(0,0,0,.55);
+}
+.government__body{display:grid;gap:clamp(1.75rem,4vw,2.75rem);padding-block:clamp(2.5rem,5vw,3.5rem) clamp(3.5rem,8vw,6rem)}
+.council-intro{font-style:italic;color:var(--mist-dim)}
+.seats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1rem,2.5vw,1.5rem)}
+.seat{
+  display:flex;flex-direction:column;gap:.7rem;
+  min-width:0;
+  padding:clamp(1.25rem,2.5vw,1.75rem);
+  background:var(--raised);
+  border:1px solid var(--line);
+}
+.sigil{width:3.4rem;height:3.4rem;display:grid;place-items:center;position:relative;margin-bottom:.35rem}
+.sigil::before{
+  content:"";
+  position:absolute;inset:.55rem;
+  border:1px solid var(--torch);
+  transform:rotate(45deg);
+}
+.sigil span{position:relative;font-family:var(--font-display);font-size:1.35rem;line-height:1;color:var(--torch)}
+.seat__role{font-family:var(--font-ui);font-weight:600;font-size:var(--fs-ui);letter-spacing:.2em;text-transform:uppercase;color:var(--torch);line-height:1.4}
+.seat__name{margin:0;font-family:var(--font-display);font-weight:400;font-size:1.6rem;line-height:1.15;overflow-wrap:anywhere}
+.seat__duty{font-size:var(--fs-small);line-height:1.6;color:var(--mist-dim)}
+
+/* ——— Coroação ——— */
+.coronation{background:var(--raised);border-block:1px solid var(--line)}
+.coronation__inner{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);
+  gap:clamp(1.5rem,5vw,4rem);
+  align-items:center;
+  padding-block:clamp(2.5rem,5vw,3.5rem);
+}
+.coronation__body{display:grid;gap:1rem;min-width:0}
+.coronation__date{
+  font-family:var(--font-ui);font-weight:500;font-size:var(--fs-ui);
+  letter-spacing:.18em;text-transform:uppercase;color:var(--mist-dim);
+  font-variant-numeric:tabular-nums;
+}
+.coronation__text{font-size:var(--fs-lead);line-height:1.5;font-style:italic;max-width:46ch}
+
+/* ——— Votos ——— */
+.vows{position:relative;isolation:isolate;overflow:hidden}
+.vows__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%;z-index:-2}
+.vows::after{
+  content:"";
+  position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(90deg,var(--veil) 0%,rgba(14,20,24,.7) 55%,rgba(14,20,24,.45) 100%),
+             linear-gradient(180deg,var(--ground) 0%,transparent 18%,transparent 82%,var(--ground) 100%);
+}
+.vows__inner{display:grid;gap:1.75rem;padding-block:clamp(4.5rem,11vw,8rem)}
+.vows__list{list-style:none;margin:0;padding:0;display:grid;gap:1.1rem;max-width:40rem}
+.vows__list li{
+  position:relative;
+  padding-left:1.9rem;
+  font-style:italic;
+  font-size:var(--fs-lead);
+  line-height:1.4;
+  text-wrap:balance;
+}
+.vows__list li::before{
+  content:"";
+  position:absolute;left:.15rem;top:.55em;
+  width:.5rem;height:.5rem;
+  border:1px solid var(--moss);
+  background:var(--moss-wash);
+  transform:rotate(45deg);
+}
+
+/* ——— Proclamação ——— */
+.closing__inner{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:clamp(2.5rem,5vw,3.5rem) clamp(2rem,6vw,5rem);
+  align-items:start;
+  padding-block:clamp(4rem,9vw,7rem);
+}
+.closing__text{display:grid;gap:clamp(1.75rem,4vw,2.5rem);min-width:0}
+
+/* Estandarte pendurado: haste de madeira e tecido com cauda recortada */
+.standard{margin:0;width:clamp(11rem,22vw,15.5rem);display:grid;justify-items:center}
+.standard__pole{
+  width:calc(100% + 1.75rem);
+  height:.6rem;
+  border-radius:.3rem;
+  background:linear-gradient(180deg,var(--wood),var(--wood-dark));
+  position:relative;z-index:1;
+}
+.standard__cloth{
+  width:100%;
+  margin-top:-.15rem;
+  transform-origin:50% 0;
+  filter:drop-shadow(0 14px 22px rgba(0,0,0,.55));
+  animation:sway 9s ease-in-out infinite alternate;
+}
+.standard__cloth img{
+  width:100%;
+  aspect-ratio:1/1.08;
+  object-fit:cover;
+  clip-path:polygon(0 0,100% 0,100% 100%,50% 89%,0 100%);
+}
+@keyframes sway{from{transform:rotate(-.6deg)}to{transform:rotate(.6deg)}}
+.closing__quote{
+  font-size:clamp(1.55rem,3.3vw,2.35rem);
+  line-height:1.32;
+  max-width:34ch;
+  text-wrap:balance;
+}
+.closing__mist{font-style:italic;color:var(--mist-dim);font-size:var(--fs-lead);line-height:1.5;max-width:44ch}
+.closing__cry{
+  display:grid;gap:.15rem;
+  font-family:var(--font-display);
+  font-size:clamp(1.6rem,3.6vw,2.4rem);
+  line-height:1.2;
+  color:var(--torch);
+}
+.seal-row{
+  grid-column:1/-1;
+  display:flex;flex-wrap:wrap;align-items:center;
+  gap:1rem 1.5rem;
+  padding-top:clamp(1.5rem,3vw,2rem);
+  border-top:1px solid var(--line);
+}
+.seal-row img{width:3.25rem;height:3.25rem;flex:none}
+.closing__sign{flex:1 1 12rem;min-width:0;font-size:var(--fs-small);line-height:1.6;color:var(--mist-dim);max-width:52ch}
+
+/* ——— Rodapé ——— */
+.foot{border-top:1px solid var(--line)}
+.foot__inner{display:grid;gap:.6rem;padding-block:2rem 2.5rem}
+.foot p{font-family:var(--font-ui);font-weight:500;font-size:.875rem;letter-spacing:.04em;line-height:1.55;color:var(--mist-dim);max-width:70ch}
+
+@media (prefers-reduced-motion:reduce){.fog,.standard__cloth{animation:none}}
+
+@media (min-width:861px){
+  .seats .seat__role{min-height:2.8em}
+}
+@media (max-width:860px){
+  .seats{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:760px){
+  .intro__grid,
+  .assembly__grid,
+  .pair,
+  .coronation__inner,
+  .birth,
+  .closing__inner{grid-template-columns:minmax(0,1fr)}
+  .plate img{aspect-ratio:16/10}
+  .plate--wide img{aspect-ratio:16/9}
+  .plate--dawn img{aspect-ratio:3/2}
+  .standard{justify-self:center}
+}
+</style>
+</head>
+<body>
+<header class="hero" id="topo">
+  <img class="hero__img" src="img/vista.jpg" alt="Morthal sob a neve: casas de madeira junto à água, a paliçada e a torre do portão ao fundo, entre montanhas cobertas de névoa.">
+  <div class="fog" aria-hidden="true"></div>
+  <div class="wrap hero__inner">
+    <nav class="nav" aria-label="Seções do édito">
+      <span class="nav__mark"><img src="img/emblema.png" alt="" width="64" height="64">Morthal · Hjaalmarch</span>
+      <ul>
+        <li><a href="#assembleia">Assembleia</a></li>
+        <li><a href="#portoes">Portões</a></li>
+        <li><a href="#governo">Governo</a></li>
+        <li><a href="#votos">Votos</a></li>
+        <li><a href="#proclamacao">Proclamação</a></li>
+      </ul>
+    </nav>
+    <div class="hero__text">
+      <p class="label">Proclamação da assembleia de Morthal</p>
+      <h1>Édito de Fundação da Nova Morthal</h1>
+      <p class="hero__sub">Pela prosperidade de Hjaalmarch e pela união dos povos de Skyrim</p>
+      <div class="rule" aria-hidden="true"></div>
+      <p class="hero__call">Que estas palavras sejam levadas aos salões, tavernas e estradas de Skyrim, para que todos conheçam o novo destino de Morthal.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="intro" aria-label="Saudação">
+    <div class="wrap intro__grid">
+      <div class="address">
+        <div class="rule" aria-hidden="true"></div>
+        <p>Aos habitantes de Hjaalmarch, aos viajantes de Skyrim e a todos aqueles que procuram um lugar para chamar de lar.</p>
+      </div>
+      <div class="prose">
+        <p class="dropcap">Por muitos invernos, Morthal permaneceu envolta pelas névoas de seus pântanos, distante das grandes rotas comerciais e dos olhos daqueles que governam as terras de Skyrim.</p>
+        <p>Contudo, mesmo nas terras mais silenciosas, a vida jamais deixa de encontrar seu caminho.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="assembly" id="assembleia" aria-labelledby="t-assembleia">
+    <div class="wrap assembly__grid">
+      <figure class="plate plate--council">
+        <img src="img/assembleia-noite.jpg" alt="Participantes da assembleia, em sua maioria argonianos, reunidos em círculo sobre as docas de madeira de Morthal à noite, com barcos atracados e casas iluminadas ao fundo.">
+        <figcaption>A assembleia nas docas de Morthal</figcaption>
+      </figure>
+      <div class="assembly__text">
+        <h2 class="kicker" id="t-assembleia">A Assembleia</h2>
+        <p>Foi sob esse entendimento que os argonianos de Skyrim, unidos aos moradores de Morthal, futuros habitantes e aliados de outras regiões, reuniram-se em assembleia para decidir o futuro da cidade.</p>
+        <p>Não pela força das armas, tampouco pelo desejo de conquista, mas pela vontade comum de devolver a Hjaalmarch sua vitalidade, seu comércio e a presença daqueles que desejam nela construir seu futuro.</p>
+      </div>
+    </div>
+    <div class="wrap assembly__birth">
+      <figure class="plate plate--wide plate--dawn">
+        <img src="img/assembleia-dia.jpg" alt="Os participantes da assembleia reunidos sobre as docas de Morthal sob luz quente, entre a paliçada, uma árvore sem folhas e casas de madeira à beira da água.">
+      </figure>
+      <div class="birth">
+        <p class="decree">Dessa assembleia nasceu a Nova Morthal.</p>
+        <p>Uma cidade de Skyrim, erguida sobre suas próprias tradições, que encontrará na iniciativa dos argonianos uma nova oportunidade de prosperar.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="gates" id="portoes" aria-labelledby="t-portoes">
+    <div class="banner">
+      <img class="banner__img" src="img/portao.jpg" alt="Torre de pedra do portão de Morthal, com o arco aberto para a floresta e paliçada de estacas dos dois lados, sob neve.">
+      <div class="wrap banner__text">
+        <h2 class="kicker" id="t-portoes">Os Portões</h2>
+        <p class="statement">Que não haja dúvidas: Morthal não será uma terra reservada a um único povo.</p>
+      </div>
+    </div>
+    <div class="wrap gates__body">
+      <p class="lead">Seus portões permanecerão abertos aos nórdicos que nela nasceram, aos argonianos que atravessaram terras distantes, aos mercadores que buscam oportunidades e a todos os povos dispostos a viver sob suas leis e contribuir para seu crescimento.</p>
+      <div class="pair">
+        <p><span class="opening">Aos filhos de Black Marsh,</span> espalhados pelas terras frias do norte, Morthal oferecerá algo que muitos há tempos procuram: um lar onde suas raízes possam florescer sem que precisem abandonar a terra que hoje habitam.</p>
+        <p><span class="opening">Aos antigos moradores,</span> asseguramos o respeito às suas tradições, à sua história e ao lugar que sempre ocuparam nesta cidade.</p>
+      </div>
+      <figure class="plate plate--wide">
+        <img src="img/rua.jpg" alt="Rua de Morthal à noite, com casas de madeira sobre fundações de pedra, um cavalo na estrada e montanhas ao fundo.">
+        <figcaption>Morthal · A rua das casas de madeira</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="government" id="governo" aria-labelledby="t-governo">
+    <div class="banner">
+      <img class="banner__img" src="img/colina.jpg" alt="Construção fortificada no alto da rocha, com janelas iluminadas e paliçada, e uma torre de vigia na colina ao lado, sob neve.">
+      <div class="wrap banner__text">
+        <h2 class="kicker" id="t-governo">O Governo</h2>
+        <p class="jarl-name">Karzeth-Ra</p>
+        <p class="label">Jarl e Voz dos Argonianos de Morthal</p>
+      </div>
+    </div>
+    <div class="wrap government__body">
+      <p class="lead">Sob a liderança de Karzeth-Ra, Jarl e Voz dos Argonianos de Morthal, será estabelecida uma administração dedicada à segurança dos habitantes, ao fortalecimento do comércio, à chegada de novos moradores e à construção de relações pacíficas com as demais Holds.</p>
+      <p class="council-intro">Para auxiliá-lo nessa incumbência, foram designados:</p>
+      <div class="seats">
+        <article class="seat">
+          <div class="sigil" aria-hidden="true"><span>N</span></div>
+          <p class="seat__role">Conselheiro de Relações Externas</p>
+          <h3 class="seat__name">Nushmeeko-Teeba-Krona</h3>
+          <p class="seat__duty">Responsável pelas relações diplomáticas e comerciais.</p>
+        </article>
+        <article class="seat">
+          <div class="sigil" aria-hidden="true"><span>T</span></div>
+          <p class="seat__role">Mão do Jarl e Conselheiro</p>
+          <h3 class="seat__name">Teeka-Xul</h3>
+          <p class="seat__duty">Responsável por assistir o governo e zelar pela condução dos assuntos da cidade.</p>
+        </article>
+        <article class="seat">
+          <div class="sigil" aria-hidden="true"><span>A</span></div>
+          <p class="seat__role">Comandante da Guarda de Morthal</p>
+          <h3 class="seat__name">Aalix-Tei</h3>
+          <p class="seat__duty">Responsável pela segurança de seus habitantes e pela proteção das terras de Hjaalmarch.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <aside class="coronation" aria-labelledby="t-coroacao">
+    <div class="wrap coronation__inner">
+      <figure class="plate">
+        <img src="img/salao.jpg" alt="Interior de um salão de madeira em Morthal, com fogo aceso no fosso central, bancos compridos e velas presas em chifres.">
+        <figcaption>Morthal · O salão</figcaption>
+      </figure>
+      <div class="coronation__body">
+        <h2 class="kicker" id="t-coroacao">A Coroação</h2>
+        <p class="coronation__date">Data a ser anunciada</p>
+        <p class="coronation__text">Com a próxima coroação, serão reafirmados perante os habitantes os compromissos assumidos durante a assembleia que deu origem a esta nova administração.</p>
+      </div>
+    </div>
+  </aside>
+
+  <section class="vows" id="votos" aria-labelledby="t-votos">
+    <img class="vows__img" src="img/docas.jpg" alt="Passarela de madeira entre casas sobre palafitas, barcos atracados e uma torre de vigia ao fundo, sob neve.">
+    <div class="wrap vows__inner">
+      <h2 class="kicker" id="t-votos">Os Votos</h2>
+      <ul class="vows__list">
+        <li>Que os mercadores encontrem oportunidades em nossos mercados.</li>
+        <li>Que os viajantes encontrem abrigo sob nossos tetos.</li>
+        <li>Que os argonianos encontrem um lar distante de seus pântanos ancestrais.</li>
+        <li>E que os antigos habitantes de Morthal encontrem renovada esperança na cidade que sempre chamaram de sua.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="closing" id="proclamacao" aria-labelledby="t-proclamacao">
+    <div class="wrap closing__inner">
+      <div class="closing__text">
+        <h2 class="kicker" id="t-proclamacao">A Proclamação</h2>
+        <p class="closing__quote">Pois não pretendemos transformar Morthal em uma nova Black Marsh, mas fazer de Morthal uma cidade de Skyrim onde os filhos de Black Marsh também possam pertencer.</p>
+        <p class="closing__mist">Que as névoas de Hjaalmarch não mais representem esquecimento, mas o despertar de uma nova era.</p>
+        <p class="closing__cry">
+          <span>Por Morthal.</span>
+          <span>Por Hjaalmarch.</span>
+          <span>Por todos aqueles que nela escolherem viver.</span>
+        </p>
+      </div>
+      <figure class="standard">
+        <div class="standard__pole" aria-hidden="true"></div>
+        <div class="standard__cloth">
+          <img src="img/estandarte.jpg" alt="Estandarte de Morthal: uma espiral tripla dentro de um círculo claro, sobre listras verticais verdes e escuras." width="360" height="360">
+        </div>
+      </figure>
+      <div class="seal-row">
+        <img src="img/emblema.png" alt="" width="256" height="256">
+        <p class="closing__sign">Proclamado em Morthal, por vontade de sua assembleia e sob a responsabilidade da nova administração de Hjaalmarch.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <p>Documento de roleplay. Karzeth-Ra, Nushmeeko-Teeba-Krona, Teeka-Xul, Aalix-Tei e a assembleia descrita neste édito são criações dos jogadores e não fazem parte da lore oficial de The Elder Scrolls.</p>
+    <p>Imagens: capturas de tela de The Elder Scrolls V: Skyrim e estandarte de Morthal.</p>
+  </div>
+</footer>
+</body>
+</html>
